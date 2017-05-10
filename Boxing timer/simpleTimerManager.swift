@@ -11,20 +11,20 @@ import AudioToolbox
 
 class simpleTimerManager {
     
-    private var totalDuration_ = 180;
-    private var currentTime_ = 0;
-    private var isFinish_ = false;
-    private var dingdingSound_ : SystemSoundID = 0;
+    fileprivate var totalDuration_ = 180;
+    fileprivate var currentTime_ = 0;
+    fileprivate var isFinish_ = false;
+    fileprivate var dingdingSound_ : SystemSoundID = 0;
     
     init() {
-        if let soundURL = NSBundle.mainBundle().URLForResource("DingDing", withExtension: "mp3") {
-            AudioServicesCreateSystemSoundID(soundURL, &dingdingSound_);
+        if let soundURL = Bundle.main.url(forResource: "DingDing", withExtension: "mp3") {
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &dingdingSound_);
         }
     }
     
-    var simpleTimer_ = NSTimer();
+    var simpleTimer_ = Timer();
     
-    func setTotalDuration(value : Int){
+    func setTotalDuration(_ value : Int){
         totalDuration_ = value;
     }
     
@@ -36,7 +36,7 @@ class simpleTimerManager {
         return isFinish_;
     }
     
-    func setFinished(value:Bool) {
+    func setFinished(_ value:Bool) {
         isFinish_ = value;
     }
     
@@ -55,7 +55,7 @@ class simpleTimerManager {
         isFinish_ = false;
         currentTime_ = totalDuration_;
         // start the timer
-        simpleTimer_ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(simpleTimerAction), userInfo: nil, repeats: true)
+        simpleTimer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(simpleTimerAction), userInfo: nil, repeats: true)
     }
     
     func end() {
@@ -79,7 +79,7 @@ class simpleTimerManager {
     }
     
     func getCurrentSeconds() -> String {
-        let seconds = Int(Double(currentTime_) % 60.0);
+        let seconds = Int(Double(currentTime_).truncatingRemainder(dividingBy: 60.0));
         if(seconds < 10){
             return "0" + seconds.description;
         }

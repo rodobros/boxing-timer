@@ -11,36 +11,36 @@ import AudioToolbox
 
 class roundTimerManager {
     
-    private var numberOfRounds_ = 3;
-    private var secondPerRound_ = 180;
-    private var secondPerBreak_ = 60;
-    private var secondPerGetReady_ = 5;
-    private var currentTime_ = 0;
-    private var currentRound_ = 1;
-    private var isBreak_ = false;
-    private var isGetReady_ = false;
-    private var isFinish_ = false;
-    private var dingdingSound_ : SystemSoundID = 0;
+    fileprivate var numberOfRounds_ = 3;
+    fileprivate var secondPerRound_ = 180;
+    fileprivate var secondPerBreak_ = 60;
+    fileprivate var secondPerGetReady_ = 5;
+    fileprivate var currentTime_ = 0;
+    fileprivate var currentRound_ = 1;
+    fileprivate var isBreak_ = false;
+    fileprivate var isGetReady_ = false;
+    fileprivate var isFinish_ = false;
+    fileprivate var dingdingSound_ : SystemSoundID = 0;
     
     init() {
-        if let soundURL = NSBundle.mainBundle().URLForResource("DingDing", withExtension: "mp3") {
-            AudioServicesCreateSystemSoundID(soundURL, &dingdingSound_);
+        if let soundURL = Bundle.main.url(forResource: "DingDing", withExtension: "mp3") {
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &dingdingSound_);
         }
     }
     
     
     
-    var roundTimer_ = NSTimer();
+    var roundTimer_ = Timer();
     
-    func setNumberOfRounds(value : Int){
+    func setNumberOfRounds(_ value : Int){
         numberOfRounds_ = value;
     }
     
-    func setSecondPerRound(value : Int){
+    func setSecondPerRound(_ value : Int){
         secondPerRound_ = value;
     }
     
-    func setSecondPerBreak(value : Int){
+    func setSecondPerBreak(_ value : Int){
         secondPerBreak_ = value;
     }
     
@@ -64,7 +64,7 @@ class roundTimerManager {
         return isFinish_;
     }
     
-    func setFinished(value:Bool) {
+    func setFinished(_ value:Bool) {
         isFinish_ = false;
     }
     
@@ -83,7 +83,7 @@ class roundTimerManager {
         isFinish_ = false;
         currentTime_ = secondPerRound_;
         // start the timer
-        roundTimer_ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(roundTimerAction), userInfo: nil, repeats: true)
+        roundTimer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(roundTimerAction), userInfo: nil, repeats: true)
     }
     
     func endTimer() {
@@ -143,7 +143,7 @@ class roundTimerManager {
     }
     
     func getCurrentRoundSeconds() -> String {
-        let seconds = Int(Double(currentTime_) % 60.0);
+        let seconds = Int(Double(currentTime_).truncatingRemainder(dividingBy: 60.0));
         if(seconds < 10){
             return "0" + seconds.description;
         }

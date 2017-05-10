@@ -9,21 +9,21 @@
 import Foundation
 
 class LocalMemoryManager {
-    private var userLocalData_: NSUserDefaults;
+    fileprivate var userLocalData_: UserDefaults;
     
     init() {
-        userLocalData_ = NSUserDefaults.standardUserDefaults()
+        userLocalData_ = UserDefaults.standard
     }
     
-    func getValueForKey(key:String) -> String {
-        if let value = userLocalData_.stringForKey(key) {
+    func getValueForKey(_ key:String) -> String {
+        if let value = userLocalData_.string(forKey: key) {
             return value;
         } else {
             return "";
         }
     }
     
-    func setValueForKey(key:String, value:String) {
+    func setValueForKey(_ key:String, value:String) {
         userLocalData_.setValue(value, forKey: key);
         userLocalData_.synchronize();
     }

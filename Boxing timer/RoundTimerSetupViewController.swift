@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class RoundTimerSetupViewController: UIViewController {
 
     // rounds information outlets
     @IBOutlet weak var roundInformationTitle: UILabel!
@@ -29,28 +29,15 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
-    // timer outlets
-   
-    @IBOutlet weak var timerContainer: UIView!
-    @IBOutlet weak var roundInformationLabel: UILabel!
-    
-    @IBOutlet weak var minutesTimerLabel: UILabel!
-    @IBOutlet weak var separatorTimerLabel: UILabel!
-    @IBOutlet weak var secondsTimerLabel: UILabel!
-    
-    @IBOutlet weak var stopButton: UIButton!
     
     //timer variables
     var roundTimerInformation = roundTimerManager();
-    var viewUpdateTimer = NSTimer();
     
     // User Data memory
     var localMemoryManager_ = LocalMemoryManager();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:#selector(update), userInfo:nil, repeats:true);
-        loadUserData();
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,31 +45,25 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func numberOfRoundsChanged(sender: UIStepper) {
+    @IBAction func numberOfRoundsChanged(_ sender: UIStepper) {
         self.numberOfRoundsLabel.text = Int(sender.value).description;
         roundTimerInformation.setNumberOfRounds(Int(sender.value));
     }
 
-    @IBAction func secondPerRoundChanged(sender: UIStepper) {
+    @IBAction func secondPerRoundChanged(_ sender: UIStepper) {
         self.secondPerRoundLabel.text = Int(sender.value).description;
         roundTimerInformation.setSecondPerRound(Int(sender.value));
     }
 
-    @IBAction func secondPerBreakChanged(sender: UIStepper) {
+    @IBAction func secondPerBreakChanged(_ sender: UIStepper) {
         self.secondPerBreakLabel.text = Int(sender.value).description;
         roundTimerInformation.setSecondPerBreak(Int(sender.value));
     }
 
-    @IBAction func StartRounds(sender: AnyObject) {
-        UIApplication.sharedApplication().idleTimerDisabled = true; // prevent iphone from going to sleep
-        toggleOutletsVisibility();
+    @IBAction func StartRounds(_ sender: AnyObject) {
+        UIApplication.shared.isIdleTimerDisabled = true; // prevent iphone from going to sleep
         roundTimerInformation.startRounds();
         saveUserData();
-    }
-    @IBAction func interruptRounds(sender: AnyObject) {
-        UIApplication.sharedApplication().idleTimerDisabled = false;
-        toggleOutletsVisibility();
-        roundTimerInformation.endTimer();
     }
     
     func saveUserData(){
@@ -114,28 +95,6 @@ class FirstViewController: UIViewController {
         }
     }
     
-    func toggleOutletsVisibility() {
-        roundInformationContainer.hidden = !roundInformationContainer.hidden
-        roundInformationTitle.hidden = !roundInformationTitle.hidden;
-        numberOfRoundsLabel.hidden = !numberOfRoundsLabel.hidden;
-        secondPerRoundLabel.hidden = !secondPerRoundLabel.hidden;
-        secondPerBreakLabel.hidden = !secondPerBreakLabel.hidden;
-        roundsStepper.hidden = !roundsStepper.hidden;
-        secondPerRoundStepper.hidden = !secondPerRoundStepper.hidden;
-        secondPerBreakStepper.hidden = !secondPerBreakStepper.hidden;
-        numberOfRoundTitle.hidden = !numberOfRoundTitle.hidden;
-        secondPerRoundTitle.hidden = !secondPerRoundTitle.hidden;
-        secondPerBreakTitle.hidden = !secondPerBreakTitle.hidden;
-        startButton.hidden = !startButton.hidden;
-        editButtonView.hidden = !editButtonView.hidden;
-        
-        timerContainer.hidden = !timerContainer.hidden;
-        roundInformationLabel.hidden = !roundInformationLabel.hidden;
-        minutesTimerLabel.hidden = !minutesTimerLabel.hidden;
-        separatorTimerLabel.hidden = !separatorTimerLabel.hidden;
-        secondsTimerLabel.hidden = !secondsTimerLabel.hidden;
-        stopButton.hidden = !stopButton.hidden;
-    }
     
     func yellowBackground() {
         /*
@@ -157,26 +116,5 @@ class FirstViewController: UIViewController {
  */
     }
     
-    func update() {
-        minutesTimerLabel.text = roundTimerInformation.getCurrentRoundMinutes();
-        secondsTimerLabel.text = roundTimerInformation.getCurrentRoundSeconds();
-        if(roundTimerInformation.isBreak()){
-            if(roundTimerInformation.isGetReady()){
-                roundInformationLabel.text = "Get ready!";
-                yellowBackground()
-            } else {
-                whiteBackground()
-                roundInformationLabel.text = "Break";
-            }
-        } else {
-            whiteBackground()
-            roundInformationLabel.text = "Round " + roundTimerInformation.getCurrentRound().description;
-        }
-        if(roundTimerInformation.isFinished()){
-            UIApplication.sharedApplication().idleTimerDisabled = false; // allow iphone to sleep
-            toggleOutletsVisibility();
-            roundTimerInformation.setFinished(false);
-        }
-    }
 }
 
