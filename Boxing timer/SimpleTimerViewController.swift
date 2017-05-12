@@ -18,13 +18,22 @@ class SimpleTimerViewController: UIViewController {
     @IBOutlet weak var timerSeparator: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     
-    fileprivate var simpleTimerManager_ = simpleTimerManager();
+    var passedSimpleTimer_ = SimpleTimer(); // timer that will received from setup viewController
     
-    var viewUpdateTimer = Timer();
+    var viewUpdateTimer = Timer(); // timer used to update the view
+    
+    private var timeOnSleep_ = Date();
     
     override func viewDidLoad() {
         super.viewDidLoad();
         viewUpdateTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(update), userInfo:nil, repeats:true);
+        startTimer();
+        
+        // this is to receive app-go-to-sleep events
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: .UIApplicationWillResignActive, object: nil);
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil);
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,22 +43,44 @@ class SimpleTimerViewController: UIViewController {
     
     func startTimer() {
         UIApplication.shared.isIdleTimerDisabled = true; // prevent iphone from going to sleep
-        simpleTimerManager_.start();
+        passedSimpleTimer_.start();
     }
     
     @IBAction func stopTimer(_ sender: AnyObject) {
-        UIApplication.shared.isIdleTimerDisabled = false; // allow iphone to sleep
-        simpleTimerManager_.end();
+        endAndCleanup();
+        
     }
     
+    func goBackToSetup(){
+        performSegue(withIdentifier: "simpleToSetupSegue", sender: self);
+    }
+    
+    func endAndCleanup(){
+        UIApplication.shared.isIdleTimerDisabled = false; // allow iphone to go to sleep
+        passedSimpleTimer_.setFinished(false);
+    }
     
     func update() {
-        minutesLabel.text = simpleTimerManager_.getCurrentMinutes();
-        secondsLabel.text = simpleTimerManager_.getCurrentSeconds();
-        if(simpleTimerManager_.isFinished()){
-            UIApplication.shared.isIdleTimerDisabled = false; // allow iphone to go to sleep
-            simpleTimerManager_.setFinished(false);
+        minutesLabel.text = passedSimpleTimer_.getCurrentMinutes();
+        secondsLabel.text = passedSimpleTimer_.getCurrentSeconds();
+        if(passedSimpleTimer_.isFinished()){
+            endAndCleanup()
+            goBackToSetup();
         }
+    }
+    
+    // handles app going to background :
+    func willResignActive(_ notification: Notification) {
+        // code to execute when app goes to background
+        timeOnSleep_ = Date();
+    }
+    
+    // handles app going to foreground :
+    func willEnterForeground(_ notification: Notification) {
+        // code to execute when app is back from backgorund
+        let timeNow = Date();
+        let timeDifference = timeNow.timeIntervalSince(timeOnSleep_); // this is the value in seconds
+        passedSimpleTimer_.addTimeToTimer((Int(timeDifference)));
     }
 }
 

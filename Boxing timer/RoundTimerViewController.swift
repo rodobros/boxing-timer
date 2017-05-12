@@ -21,15 +21,19 @@ class RoundTimerViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     
     //timer variables
-    var roundTimerInformation = roundTimerManager();
-    var viewUpdateTimer = Timer();
+    var passedRoundTimer_ = RoundTimer();
+    private var viewUpdateTimer = Timer();
     
     // User Data memory
-    var localMemoryManager_ = LocalMemoryManager();
+    private var localMemoryManager_ = LocalMemoryManager();
+    
+    private var timeOnSleep_ = Date();
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewUpdateTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(update), userInfo:nil, repeats:true);
+        startRounds();
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,21 +41,29 @@ class RoundTimerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func StartRounds() {
+    func startRounds() {
         UIApplication.shared.isIdleTimerDisabled = true; // prevent iphone from going to sleep
-        roundTimerInformation.startRounds();
+        passedRoundTimer_.start();
     }
     
     @IBAction func interruptRounds(sender: AnyObject) {
         // pause timer here
     }
     
-    @IBAction func stopRounds(_ sender: Any) {
-        UIApplication.shared.isIdleTimerDisabled = false;
-        roundTimerInformation.endTimer();
+    @IBAction func stopButtonClick(_ sender: Any) {
+        endAndCleanup()
     }
     
-    func yellowBackground() {
+    private func endAndCleanup(){
+        UIApplication.shared.isIdleTimerDisabled = false; // allow iphone to sleep
+        passedRoundTimer_.end();
+    }
+    
+    private func goBackToSetup(){
+        performSegue(withIdentifier: "roundToSetupSegue", sender: self);
+    }
+    
+    private func yellowBackground() {
         /*
          for var i in self.view.subviews {
          if(i.tag > 0 && i.tag < 4) {
@@ -61,7 +73,7 @@ class RoundTimerViewController: UIViewController {
          */
     }
     
-    func whiteBackground() {
+    private func whiteBackground() {
         /*
          for var i in self.view.subviews {
          if(i.tag > 0 && i.tag < 4) {
@@ -71,11 +83,11 @@ class RoundTimerViewController: UIViewController {
          */
     }
     
-    func update() {
-        minutesTimerLabel.text = roundTimerInformation.getCurrentRoundMinutes();
-        secondsTimerLabel.text = roundTimerInformation.getCurrentRoundSeconds();
-        if(roundTimerInformation.isBreak()){
-            if(roundTimerInformation.isGetReady()){
+   @objc private func update() {
+        minutesTimerLabel.text = passedRoundTimer_.getCurrentMinutes();
+        secondsTimerLabel.text = passedRoundTimer_.getCurrentSeconds();
+        if(passedRoundTimer_.isBreak()){
+            if(passedRoundTimer_.isGetReady()){
                 roundInformationLabel.text = "Get ready!";
                 yellowBackground()
             } else {
@@ -84,12 +96,26 @@ class RoundTimerViewController: UIViewController {
             }
         } else {
             whiteBackground()
-            roundInformationLabel.text = "Round " + roundTimerInformation.getCurrentRound().description;
+            roundInformationLabel.text = "Round " + passedRoundTimer_.getCurrentRound().description;
         }
-        if(roundTimerInformation.isFinished()){
-            UIApplication.shared.isIdleTimerDisabled = false; // allow iphone to sleep
-            roundTimerInformation.setFinished(false);
+        if(passedRoundTimer_.isFinished()){
+            endAndCleanup();
+            goBackToSetup();
         }
+    }
+    
+    // handles app going to background :
+    private func willResignActive(_ notification: Notification) {
+        // code to execute when app goes to background
+        timeOnSleep_ = Date();
+    }
+    
+    // handles app going to foreground :
+    private func willEnterForeground(_ notification: Notification) {
+        // code to execute when app is back from backgorund
+        let timeNow = Date();
+        let timeDifference = timeNow.timeIntervalSince(timeOnSleep_); // this is the value in seconds
+        passedRoundTimer_.addTimeToTimer((Int(timeDifference)));
     }
 }
 

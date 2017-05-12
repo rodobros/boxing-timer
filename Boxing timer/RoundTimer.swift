@@ -1,5 +1,5 @@
 //
-//  roundTimerManager.swift
+//  RoundTimer.swift
 //  Boxing timer
 //
 //  Created by Rodolphe Brossard on 2016-09-06.
@@ -9,28 +9,36 @@
 import Foundation
 import AudioToolbox
 
-class roundTimerManager {
+class RoundTimer : BasicTimer {
     
     fileprivate var numberOfRounds_ = 3;
     fileprivate var secondPerRound_ = 180;
     fileprivate var secondPerBreak_ = 60;
     fileprivate var secondPerGetReady_ = 5;
-    fileprivate var currentTime_ = 0;
     fileprivate var currentRound_ = 1;
     fileprivate var isBreak_ = false;
     fileprivate var isGetReady_ = false;
-    fileprivate var isFinish_ = false;
-    fileprivate var dingdingSound_ : SystemSoundID = 0;
+    
+    // variables from BasicTimer protocol
+    internal var isFinish_ = false;
+    internal var currentTime_ = 0;
+    internal var alarmSound_ : SystemSoundID = 0;
+    internal var timer_ = Timer();
     
     init() {
         if let soundURL = Bundle.main.url(forResource: "DingDing", withExtension: "mp3") {
-            AudioServicesCreateSystemSoundID(soundURL as CFURL, &dingdingSound_);
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &alarmSound_);
         }
     }
     
-    
-    
-    var roundTimer_ = Timer();
+    func start() {
+        playAlarmSound();
+        timer_.invalidate() // just in case this button is tapped multiple times
+        isFinish_ = false;
+        currentTime_ = secondPerRound_;
+        // start the timer
+        timer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
     
     func setNumberOfRounds(_ value : Int){
         numberOfRounds_ = value;
@@ -68,26 +76,8 @@ class roundTimerManager {
         isFinish_ = false;
     }
     
-    func playBell() {
-        AudioServicesPlaySystemSound(dingdingSound_);
-        vibrateAlert();
-    }
-    
-    func vibrateAlert() {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-    }
-    
-    func startRounds() {
-        playBell();
-        roundTimer_.invalidate() // just in case this button is tapped multiple times
-        isFinish_ = false;
-        currentTime_ = secondPerRound_;
-        // start the timer
-        roundTimer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(roundTimerAction), userInfo: nil, repeats: true)
-    }
-    
-    func endTimer() {
-        roundTimer_.invalidate();
+    func end() {
+        timer_.invalidate();
         currentRound_ = 1;
         currentTime_ = 0;
         isBreak_ = false;
@@ -101,52 +91,48 @@ class roundTimerManager {
         return isGetReady_;
     }
     
-    @objc func roundTimerAction() {
-        currentTime_ -= 1;
+    @objc private func timerAction() {
+        tryDecrementTimer(1);
+    }
+    
+    func addTimeToTimer(_ seconds : Int){
+        tryDecrementTimer(seconds);
+    }
+    
+    private func tryDecrementTimer(_ secondToRemove : Int) {
+        currentTime_ -= secondToRemove;
         if(isBreak_)
         {
             if(currentTime_ < 5 && currentTime_ > 0) {
                 isGetReady_ = true;
-                vibrateAlert();
+                vibrate();
             }
-            else if(currentTime_ == 0){
-                playBell();
-                currentTime_ = secondPerRound_;
+            else if(currentTime_ <= 0){
+                playAlarmSound();
+                currentTime_ = secondPerRound_ + currentTime_;
                 isBreak_ = false;
                 isGetReady_ = false;
             }
         }
         else
         {
-            if(currentTime_ == 0)
+            if(currentTime_ <= 0)
             {
-                currentTime_ = secondPerBreak_;
+                currentTime_ = secondPerBreak_ + currentTime_;
                 if(currentRound_ == numberOfRounds_)
                 {
-                    playBell();
+                    playAlarmSound();
                     isFinish_ = true;
-                    endTimer();
+                    end();
                     return;
                 }
                 else
                 {
-                    playBell();
+                    playAlarmSound();
                     isBreak_ = true;
                     currentRound_ += 1;
                 }
             }
         }
-    }
-    
-    func getCurrentRoundMinutes() -> String {
-       return Int(floor(Double(currentTime_) / 60.0)).description;
-    }
-    
-    func getCurrentRoundSeconds() -> String {
-        let seconds = Int(Double(currentTime_).truncatingRemainder(dividingBy: 60.0));
-        if(seconds < 10){
-            return "0" + seconds.description;
-        }
-        return seconds.description;
     }
 }

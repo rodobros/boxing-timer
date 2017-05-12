@@ -18,11 +18,24 @@ class SimpleTimerSetupViewController: UIViewController {
     @IBOutlet weak var roundDurationLabel: UILabel!
 
     
-    fileprivate var simpleTimerManager_ = simpleTimerManager();
+    fileprivate var simpleTimer_ = SimpleTimer();
+    
+    // User Data memory
+    var localMemoryManager_ = LocalMemoryManager();
     
         
     override func viewDidLoad() {
         super.viewDidLoad();
+        loadUserData();
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "setupToSimpleSegue") {
+            //Checking identifier is crucial as there might be multiple
+            // segues attached to same view
+            let detailVC = segue.destination as! SimpleTimerViewController;
+            detailVC.passedSimpleTimer_ = simpleTimer_;
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,11 +45,27 @@ class SimpleTimerSetupViewController: UIViewController {
     
     @IBAction func timerValueChanged(_ sender: UIStepper) {
         self.roundDurationValue.text = Int(sender.value).description;
-        simpleTimerManager_.setTotalDuration(Int(sender.value));
+        simpleTimer_.setTotalDuration(Int(sender.value));
+    }
+    
+    func saveUserData(){
+        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION, value: simpleTimer_.getTotalDuration().description);
+    }
+    
+    func loadUserData(){
+        let previousTotalDuration = localMemoryManager_.getValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION);
+        
+        if(previousTotalDuration != "") {
+            roundDurationStepper.value = Double(previousTotalDuration)!;
+            simpleTimer_.setTotalDuration((Int(previousTotalDuration)!));
+            roundDurationValue.text = previousTotalDuration;
+            
+        }
     }
     
     @IBAction func startTimer(_ sender: AnyObject)
     {
+        saveUserData();
         // navigate to simpleTimerViewController here
     }
 }

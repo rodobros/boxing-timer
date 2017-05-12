@@ -9,15 +9,16 @@
 /* Begin PBXBuildFile section */
 		FA00C1861EC26F7B00779A87 /* SimpleTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */; };
 		FA00C1881EC27B5A00779A87 /* RoundTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */; };
+		FA00C18E1EC4F71D00779A87 /* BasicTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */; };
 		FA96EDFA1D7E934100D86BBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDF91D7E934100D86BBB /* AppDelegate.swift */; };
 		FA96EDFC1D7E934100D86BBB /* RoundTimerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */; };
 		FA96EDFE1D7E934100D86BBB /* SimpleTimerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDFD1D7E934100D86BBB /* SimpleTimerSetupViewController.swift */; };
 		FA96EE011D7E934100D86BBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96EDFF1D7E934100D86BBB /* Main.storyboard */; };
 		FA96EE031D7E934100D86BBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA96EE021D7E934100D86BBB /* Assets.xcassets */; };
 		FA96EE061D7E934100D86BBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96EE041D7E934100D86BBB /* LaunchScreen.storyboard */; };
-		FA96EE0E1D7E9C1100D86BBB /* roundTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE0D1D7E9C1100D86BBB /* roundTimerManager.swift */; };
+		FA96EE0E1D7E9C1100D86BBB /* RoundTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */; };
 		FA96EE101D7FBA3000D86BBB /* DingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */; };
-		FA96EE121D8077DC00D86BBB /* simpleTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE111D8077DC00D86BBB /* simpleTimerManager.swift */; };
+		FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */; };
 		FA96EE141D8147C100D86BBB /* localMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE131D8147C100D86BBB /* localMemoryManager.swift */; };
 		FA96EE161D814CA200D86BBB /* BoxingTimerUserDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimerViewController.swift; sourceTree = "<group>"; };
 		FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTimerViewController.swift; sourceTree = "<group>"; };
+		FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTimer.swift; sourceTree = "<group>"; };
 		FA96EDF61D7E934100D86BBB /* Boxing timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boxing timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA96EDF91D7E934100D86BBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTimerSetupViewController.swift; sourceTree = "<group>"; };
@@ -33,9 +35,9 @@
 		FA96EE021D7E934100D86BBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA96EE051D7E934100D86BBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA96EE071D7E934100D86BBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA96EE0D1D7E9C1100D86BBB /* roundTimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = roundTimerManager.swift; sourceTree = "<group>"; };
+		FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTimer.swift; sourceTree = "<group>"; };
 		FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDing.mp3; sourceTree = "<group>"; };
-		FA96EE111D8077DC00D86BBB /* simpleTimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = simpleTimerManager.swift; sourceTree = "<group>"; };
+		FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimer.swift; sourceTree = "<group>"; };
 		FA96EE131D8147C100D86BBB /* localMemoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = localMemoryManager.swift; sourceTree = "<group>"; };
 		FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxingTimerUserDataKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +53,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA00C1891EC4EC8300779A87 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */,
+				FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */,
+				FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */,
+				FA96EDFD1D7E934100D86BBB /* SimpleTimerSetupViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FA00C18A1EC4ECA300779A87 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		FA00C18B1EC4ECC900779A87 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				FA96EE131D8147C100D86BBB /* localMemoryManager.swift */,
+				FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */,
+			);
+			name = Persistance;
+			sourceTree = "<group>";
+		};
+		FA00C18C1EC4ED1000779A87 /* TimerLogic */ = {
+			isa = PBXGroup;
+			children = (
+				FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */,
+				FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */,
+				FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */,
+			);
+			name = TimerLogic;
+			sourceTree = "<group>";
+		};
 		FA96EDED1D7E934100D86BBB = {
 			isa = PBXGroup;
 			children = (
@@ -70,20 +110,15 @@
 		FA96EDF81D7E934100D86BBB /* Boxing timer */ = {
 			isa = PBXGroup;
 			children = (
-				FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */,
+				FA00C18C1EC4ED1000779A87 /* TimerLogic */,
+				FA00C18B1EC4ECC900779A87 /* Persistance */,
+				FA00C18A1EC4ECA300779A87 /* Sounds */,
+				FA00C1891EC4EC8300779A87 /* ViewControllers */,
 				FA96EDF91D7E934100D86BBB /* AppDelegate.swift */,
-				FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */,
-				FA96EDFD1D7E934100D86BBB /* SimpleTimerSetupViewController.swift */,
-				FA96EE131D8147C100D86BBB /* localMemoryManager.swift */,
-				FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */,
-				FA96EE111D8077DC00D86BBB /* simpleTimerManager.swift */,
 				FA96EDFF1D7E934100D86BBB /* Main.storyboard */,
 				FA96EE021D7E934100D86BBB /* Assets.xcassets */,
 				FA96EE041D7E934100D86BBB /* LaunchScreen.storyboard */,
 				FA96EE071D7E934100D86BBB /* Info.plist */,
-				FA96EE0D1D7E9C1100D86BBB /* roundTimerManager.swift */,
-				FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */,
-				FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */,
 			);
 			path = "Boxing timer";
 			sourceTree = "<group>";
@@ -122,6 +157,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5W7E2RK452;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -163,12 +199,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA96EDFE1D7E934100D86BBB /* SimpleTimerSetupViewController.swift in Sources */,
-				FA96EE121D8077DC00D86BBB /* simpleTimerManager.swift in Sources */,
+				FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */,
 				FA00C1881EC27B5A00779A87 /* RoundTimerViewController.swift in Sources */,
 				FA96EE141D8147C100D86BBB /* localMemoryManager.swift in Sources */,
 				FA96EDFA1D7E934100D86BBB /* AppDelegate.swift in Sources */,
 				FA00C1861EC26F7B00779A87 /* SimpleTimerViewController.swift in Sources */,
-				FA96EE0E1D7E9C1100D86BBB /* roundTimerManager.swift in Sources */,
+				FA96EE0E1D7E9C1100D86BBB /* RoundTimer.swift in Sources */,
+				FA00C18E1EC4F71D00779A87 /* BasicTimer.swift in Sources */,
 				FA96EE161D814CA200D86BBB /* BoxingTimerUserDataKeys.swift in Sources */,
 				FA96EDFC1D7E934100D86BBB /* RoundTimerSetupViewController.swift in Sources */,
 			);
@@ -285,12 +322,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5W7E2RK452;
 				INFOPLIST_FILE = "Boxing timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Rodobros.Boxing-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -301,12 +340,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5W7E2RK452;
 				INFOPLIST_FILE = "Boxing timer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Rodobros.Boxing-timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
