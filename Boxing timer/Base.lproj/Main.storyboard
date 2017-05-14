@@ -233,9 +233,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x1M-0O-utS" firstAttribute="top" secondItem="pGd-ET-Sp3" secondAttribute="bottom" id="5KT-cx-gJk"/>
+                            <constraint firstItem="pGd-ET-Sp3" firstAttribute="bottom" secondItem="x1M-0O-utS" secondAttribute="top" id="5KT-cx-gJk"/>
                             <constraint firstItem="pGd-ET-Sp3" firstAttribute="centerY" secondItem="AfE-cY-i3f" secondAttribute="centerY" id="TGo-l5-1fr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pGd-ET-Sp3" secondAttribute="trailing" id="dBe-zS-j32"/>
+                            <constraint firstItem="pGd-ET-Sp3" firstAttribute="trailing" secondItem="AfE-cY-i3f" secondAttribute="trailingMargin" id="dBe-zS-j32"/>
                             <constraint firstItem="pGd-ET-Sp3" firstAttribute="centerX" secondItem="AfE-cY-i3f" secondAttribute="centerX" id="h5f-nt-O62"/>
                             <constraint firstItem="pGd-ET-Sp3" firstAttribute="leading" secondItem="AfE-cY-i3f" secondAttribute="leadingMargin" id="iIO-x3-ZP2"/>
                             <constraint firstItem="pGd-ET-Sp3" firstAttribute="top" secondItem="AfE-cY-i3f" secondAttribute="topMargin" id="piB-F2-iyw"/>
@@ -397,7 +397,7 @@
                                             <color key="titleColor" red="1" green="0.122539656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="stopTimer:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KEn-ds-0qF"/>
+                                            <action selector="stopButtonClicked:" destination="F8a-Lq-v2v" eventType="touchUpInside" id="NXb-Rz-ysl"/>
                                             <segue destination="49e-Tb-3d3" kind="show" identifier="simpleToSetupSegue" id="GuR-o3-C4P"/>
                                         </connections>
                                     </button>
@@ -419,14 +419,14 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS2-Ka-fcG">
-                                        <rect key="frame" x="54" y="228" width="64" height="63"/>
+                                        <rect key="frame" x="51" y="228" width="64" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zk-D3-Gh1">
-                                        <rect key="frame" x="126" y="228" width="68" height="63"/>
+                                        <rect key="frame" x="130" y="228" width="68" height="63"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -449,9 +449,9 @@
                             <constraint firstItem="Mr1-P1-WVT" firstAttribute="top" secondItem="Dnq-Yd-IT1" secondAttribute="topMargin" id="0JO-FS-DOl"/>
                             <constraint firstItem="Mr1-P1-WVT" firstAttribute="centerY" secondItem="Dnq-Yd-IT1" secondAttribute="centerY" id="1pX-mb-lHr"/>
                             <constraint firstItem="Mr1-P1-WVT" firstAttribute="centerX" secondItem="Dnq-Yd-IT1" secondAttribute="centerX" id="Gwc-uB-vog"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Mr1-P1-WVT" secondAttribute="trailing" id="SQ2-JA-ieB"/>
+                            <constraint firstItem="Mr1-P1-WVT" firstAttribute="trailing" secondItem="Dnq-Yd-IT1" secondAttribute="trailingMargin" id="SQ2-JA-ieB"/>
                             <constraint firstItem="Mr1-P1-WVT" firstAttribute="leading" secondItem="Dnq-Yd-IT1" secondAttribute="leadingMargin" id="Yje-zm-UhN"/>
-                            <constraint firstItem="A8F-RK-aBx" firstAttribute="top" secondItem="Mr1-P1-WVT" secondAttribute="bottom" id="dhO-75-k3J"/>
+                            <constraint firstItem="Mr1-P1-WVT" firstAttribute="bottom" secondItem="A8F-RK-aBx" secondAttribute="top" id="dhO-75-k3J"/>
                         </constraints>
                     </view>
                     <connections>

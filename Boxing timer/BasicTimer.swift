@@ -15,28 +15,25 @@ protocol BasicTimer {
     var timer_ : Timer {get set}
     var currentTime_ : Int {get set}
     
-    func end()
     func start()
-    func addTimeToTimer(_ seconds : Int)
+    func end()
+    func notifyAppWillResign()
+    func notifyAppWillEnterForeground()
 }
 
 extension BasicTimer {
     
-    func vibrate() {
+    internal func vibrate() {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
     }
     
-    func playAlarmSound() {
+    internal func playAlarmSound() {
         AudioServicesPlaySystemSound(alarmSound_);
         vibrate();
     }
     
     func isFinished() -> Bool {
         return isFinish_;
-    }
-    
-    mutating func setFinished(_ value:Bool) {
-        isFinish_ = value;
     }
     
     func getCurrentMinutes() -> String {

@@ -10,6 +10,10 @@
 		FA00C1861EC26F7B00779A87 /* SimpleTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */; };
 		FA00C1881EC27B5A00779A87 /* RoundTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */; };
 		FA00C18E1EC4F71D00779A87 /* BasicTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */; };
+		FA4E76331EC7D61400174BFE /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E76321EC7D61400174BFE /* Observer.swift */; };
+		FA4E76351EC7D65A00174BFE /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E76341EC7D65A00174BFE /* Observable.swift */; };
+		FA4E76371EC7E6BB00174BFE /* RoundTimerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E76361EC7E6BB00174BFE /* RoundTimerInformation.swift */; };
+		FA4E76391EC7E9BE00174BFE /* SimpleTimerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4E76381EC7E9BE00174BFE /* SimpleTimerInformation.swift */; };
 		FA96EDFA1D7E934100D86BBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDF91D7E934100D86BBB /* AppDelegate.swift */; };
 		FA96EDFC1D7E934100D86BBB /* RoundTimerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */; };
 		FA96EDFE1D7E934100D86BBB /* SimpleTimerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EDFD1D7E934100D86BBB /* SimpleTimerSetupViewController.swift */; };
@@ -27,6 +31,10 @@
 		FA00C1851EC26F7B00779A87 /* SimpleTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimerViewController.swift; sourceTree = "<group>"; };
 		FA00C1871EC27B5A00779A87 /* RoundTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTimerViewController.swift; sourceTree = "<group>"; };
 		FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTimer.swift; sourceTree = "<group>"; };
+		FA4E76321EC7D61400174BFE /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		FA4E76341EC7D65A00174BFE /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		FA4E76361EC7E6BB00174BFE /* RoundTimerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTimerInformation.swift; sourceTree = "<group>"; };
+		FA4E76381EC7E9BE00174BFE /* SimpleTimerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimerInformation.swift; sourceTree = "<group>"; };
 		FA96EDF61D7E934100D86BBB /* Boxing timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boxing timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA96EDF91D7E934100D86BBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA96EDFB1D7E934100D86BBB /* RoundTimerSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTimerSetupViewController.swift; sourceTree = "<group>"; };
@@ -87,8 +95,19 @@
 				FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */,
 				FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */,
 				FA00C18D1EC4F71D00779A87 /* BasicTimer.swift */,
+				FA4E76361EC7E6BB00174BFE /* RoundTimerInformation.swift */,
+				FA4E76381EC7E9BE00174BFE /* SimpleTimerInformation.swift */,
 			);
 			name = TimerLogic;
+			sourceTree = "<group>";
+		};
+		FA4E76311EC7D5F900174BFE /* Observer/Observable interface */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E76321EC7D61400174BFE /* Observer.swift */,
+				FA4E76341EC7D65A00174BFE /* Observable.swift */,
+			);
+			name = "Observer/Observable interface";
 			sourceTree = "<group>";
 		};
 		FA96EDED1D7E934100D86BBB = {
@@ -110,6 +129,7 @@
 		FA96EDF81D7E934100D86BBB /* Boxing timer */ = {
 			isa = PBXGroup;
 			children = (
+				FA4E76311EC7D5F900174BFE /* Observer/Observable interface */,
 				FA00C18C1EC4ED1000779A87 /* TimerLogic */,
 				FA00C18B1EC4ECC900779A87 /* Persistance */,
 				FA00C18A1EC4ECA300779A87 /* Sounds */,
@@ -202,10 +222,14 @@
 				FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */,
 				FA00C1881EC27B5A00779A87 /* RoundTimerViewController.swift in Sources */,
 				FA96EE141D8147C100D86BBB /* localMemoryManager.swift in Sources */,
+				FA4E76351EC7D65A00174BFE /* Observable.swift in Sources */,
 				FA96EDFA1D7E934100D86BBB /* AppDelegate.swift in Sources */,
+				FA4E76371EC7E6BB00174BFE /* RoundTimerInformation.swift in Sources */,
 				FA00C1861EC26F7B00779A87 /* SimpleTimerViewController.swift in Sources */,
+				FA4E76391EC7E9BE00174BFE /* SimpleTimerInformation.swift in Sources */,
 				FA96EE0E1D7E9C1100D86BBB /* RoundTimer.swift in Sources */,
 				FA00C18E1EC4F71D00779A87 /* BasicTimer.swift in Sources */,
+				FA4E76331EC7D61400174BFE /* Observer.swift in Sources */,
 				FA96EE161D814CA200D86BBB /* BoxingTimerUserDataKeys.swift in Sources */,
 				FA96EDFC1D7E934100D86BBB /* RoundTimerSetupViewController.swift in Sources */,
 			);

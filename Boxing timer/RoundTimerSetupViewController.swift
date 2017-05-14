@@ -31,7 +31,7 @@ class RoundTimerSetupViewController: UIViewController {
     
     
     //timer variables
-    var roundTimer = RoundTimer();
+    var roundTimerInformation_ = RoundTimerInformation();
     
     // User Data memory
     var localMemoryManager_ = LocalMemoryManager();
@@ -48,29 +48,23 @@ class RoundTimerSetupViewController: UIViewController {
     
     @IBAction func numberOfRoundsChanged(_ sender: UIStepper) {
         self.numberOfRoundsLabel.text = Int(sender.value).description;
-        roundTimer.setNumberOfRounds(Int(sender.value));
+        roundTimerInformation_.numberOfRounds = Int(sender.value);
     }
 
     @IBAction func secondPerRoundChanged(_ sender: UIStepper) {
         self.secondPerRoundLabel.text = Int(sender.value).description;
-        roundTimer.setSecondPerRound(Int(sender.value));
+        roundTimerInformation_.secondPerRound = Int(sender.value);
     }
 
     @IBAction func secondPerBreakChanged(_ sender: UIStepper) {
         self.secondPerBreakLabel.text = Int(sender.value).description;
-        roundTimer.setSecondPerBreak(Int(sender.value));
-    }
-
-    @IBAction func StartRounds(_ sender: AnyObject) {
-        UIApplication.shared.isIdleTimerDisabled = true; // prevent iphone from going to sleep
-        roundTimer.start();
-        saveUserData();
+        roundTimerInformation_.secondPerBreak = Int(sender.value);
     }
     
     func saveUserData(){
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER, value: roundTimer.getNumberOfRounds().description);
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION, value: roundTimer.getSecondPerRound().description);
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION, value: roundTimer.getSecondPerBreak().description);
+        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER, value: roundTimerInformation_.numberOfRounds.description);
+        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION, value: roundTimerInformation_.secondPerRound.description);
+        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION, value: roundTimerInformation_.secondPerBreak.description);
     }
     
     func loadUserData(){
@@ -80,18 +74,18 @@ class RoundTimerSetupViewController: UIViewController {
         
         if(savedRoundNumber != "") {
             roundsStepper.value = Double(savedRoundNumber)!;
-            roundTimer.setNumberOfRounds(Int(savedRoundNumber)!);
+            roundTimerInformation_.numberOfRounds = Int(savedRoundNumber)!;
             numberOfRoundsLabel.text = savedRoundNumber;
             
         }
         if(savedRoundDuration != "") {
             secondPerRoundStepper.value = Double(savedRoundDuration)!;
-            roundTimer.setSecondPerRound(Int(savedRoundDuration)!);
+            roundTimerInformation_.secondPerRound = Int(savedRoundDuration)!;
             secondPerRoundLabel.text = savedRoundDuration;
         }
         if(savedRoundBreakDuration != "") {
             secondPerBreakStepper.value = Double(savedRoundBreakDuration)!;
-            roundTimer.setSecondPerBreak(Int(savedRoundBreakDuration)!);
+            roundTimerInformation_.secondPerBreak = Int(savedRoundBreakDuration)!;
             secondPerBreakLabel.text = savedRoundBreakDuration;
         }
     }
@@ -102,7 +96,7 @@ class RoundTimerSetupViewController: UIViewController {
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
             let detailVC = segue.destination as! RoundTimerViewController;
-            detailVC.passedRoundTimer_ = roundTimer;
+            detailVC.initRoundTimer(passedTimerInformation: roundTimerInformation_);
         }
     }
     

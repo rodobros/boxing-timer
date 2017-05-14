@@ -9,9 +9,9 @@
 import Foundation
 import AudioToolbox
 
-class SimpleTimer : BasicTimer {
+class SimpleTimer : BasicTimer, Observable {
     
-    fileprivate var totalDuration_ = 180;
+    internal var info_ : SimpleTimerInformation;
     
     // variables from BasicTimer protocol
     internal var currentTime_ = 0;
@@ -19,14 +19,21 @@ class SimpleTimer : BasicTimer {
     internal var alarmSound_ : SystemSoundID = 0;
     internal var timer_ = Timer();
     
-    init() {
+    // Observable protocol variabl
+    internal var observers = [Observer]()
+    
+    private var timeOnSleep_ = Date();
+    
+    init(view : Observer, info : SimpleTimerInformation) {
         if let soundURL = Bundle.main.url(forResource: "DingDing", withExtension: "mp3") {
             AudioServicesCreateSystemSoundID(soundURL as CFURL, &alarmSound_);
         }
+        info_ = info;
+        addObserver(observer: view);
     }
     
     
-    
+    /*
     func setTotalDuration(_ value : Int){
         totalDuration_ = value;
     }
@@ -34,20 +41,13 @@ class SimpleTimer : BasicTimer {
     func getTotalDuration() -> Int {
         return totalDuration_;
     }
-    
-    func isFinished() -> Bool {
-        return isFinish_;
-    }
-    
-    func setFinished(_ value:Bool) {
-        isFinish_ = value;
-    }
+     */
     
     func start() {
         playAlarmSound();
         timer_.invalidate() // just in case this button is tapped multiple times
         isFinish_ = false;
-        currentTime_ = totalDuration_;
+        currentTime_ = info_.totalDuration;
         // start the timer
         timer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(simpleTimerAction), userInfo: nil, repeats: true)
     }
@@ -57,12 +57,23 @@ class SimpleTimer : BasicTimer {
         currentTime_ = 0;
     }
 
+    func notifyAppWillResign() {
+        timeOnSleep_ = Date();
+    }
+    
+    func notifyAppWillEnterForeground(){
+        // code to execute when app is back from backgorund
+        let timeNow = Date();
+        let timeDifference = timeNow.timeIntervalSince(timeOnSleep_); // this is the value in seconds
+        addTimeToTimer((Int(timeDifference)));
+        
+    }
     
     @objc private func simpleTimerAction() {
         tryDecrementTimer(1);
     }
     
-    func addTimeToTimer(_ seconds : Int){
+    private func addTimeToTimer(_ seconds : Int){
         tryDecrementTimer(seconds);
     }
     
@@ -74,5 +85,6 @@ class SimpleTimer : BasicTimer {
             isFinish_ = true;
             end();
         }
+        notify();
     }
 }
