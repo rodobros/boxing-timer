@@ -1,5 +1,5 @@
 //
-//  localMemoryManager.swift
+//  UserPreferencesManager.swift
 //  Boxing timer
 //
 //  Created by Rodolphe Brossard on 2016-09-08.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LocalMemoryManager {
+class UserPreferencesManager {
     fileprivate var userLocalData_: UserDefaults;
     
     init() {

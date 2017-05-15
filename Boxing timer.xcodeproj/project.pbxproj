@@ -23,7 +23,7 @@
 		FA96EE0E1D7E9C1100D86BBB /* RoundTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */; };
 		FA96EE101D7FBA3000D86BBB /* DingDing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */; };
 		FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */; };
-		FA96EE141D8147C100D86BBB /* localMemoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE131D8147C100D86BBB /* localMemoryManager.swift */; };
+		FA96EE141D8147C100D86BBB /* UserPreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE131D8147C100D86BBB /* UserPreferencesManager.swift */; };
 		FA96EE161D814CA200D86BBB /* BoxingTimerUserDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +46,7 @@
 		FA96EE0D1D7E9C1100D86BBB /* RoundTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTimer.swift; sourceTree = "<group>"; };
 		FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDing.mp3; sourceTree = "<group>"; };
 		FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimer.swift; sourceTree = "<group>"; };
-		FA96EE131D8147C100D86BBB /* localMemoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = localMemoryManager.swift; sourceTree = "<group>"; };
+		FA96EE131D8147C100D86BBB /* UserPreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferencesManager.swift; sourceTree = "<group>"; };
 		FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxingTimerUserDataKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +83,7 @@
 		FA00C18B1EC4ECC900779A87 /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				FA96EE131D8147C100D86BBB /* localMemoryManager.swift */,
+				FA96EE131D8147C100D86BBB /* UserPreferencesManager.swift */,
 				FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */,
 			);
 			name = Persistance;
@@ -221,7 +221,7 @@
 				FA96EDFE1D7E934100D86BBB /* SimpleTimerSetupViewController.swift in Sources */,
 				FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */,
 				FA00C1881EC27B5A00779A87 /* RoundTimerViewController.swift in Sources */,
-				FA96EE141D8147C100D86BBB /* localMemoryManager.swift in Sources */,
+				FA96EE141D8147C100D86BBB /* UserPreferencesManager.swift in Sources */,
 				FA4E76351EC7D65A00174BFE /* Observable.swift in Sources */,
 				FA96EDFA1D7E934100D86BBB /* AppDelegate.swift in Sources */,
 				FA4E76371EC7E6BB00174BFE /* RoundTimerInformation.swift in Sources */,

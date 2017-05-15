@@ -24,10 +24,6 @@ class RoundTimerViewController: UIViewController, Observer {
     
     //timer variables
     private var roundTimer_ : RoundTimer?
-    //private var viewUpdateTimer = Timer();
-    
-    // User Data memory
-    private var localMemoryManager_ = LocalMemoryManager();
     
     private var timeOnSleep_ = Date();
     
@@ -39,6 +35,11 @@ class RoundTimerViewController: UIViewController, Observer {
         super.viewDidLoad()
         //viewUpdateTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(update), userInfo:nil, repeats:true);
         startRounds();
+        
+        // this is to receive app-go-to-sleep events
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: .UIApplicationWillResignActive, object: nil);
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil);
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,12 +112,12 @@ class RoundTimerViewController: UIViewController, Observer {
     }
     
     // handles app going to background :
-    private func willResignActive(_ notification: Notification) {
+    func willResignActive(_ notification: Notification) {
         roundTimer_!.notifyAppWillResign();
     }
     
     // handles app going to foreground :
-    private func willEnterForeground(_ notification: Notification) {
+    func willEnterForeground(_ notification: Notification) {
         roundTimer_!.notifyAppWillEnterForeground();
     }
 }

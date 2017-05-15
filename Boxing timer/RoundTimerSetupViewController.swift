@@ -34,7 +34,7 @@ class RoundTimerSetupViewController: UIViewController {
     var roundTimerInformation_ = RoundTimerInformation();
     
     // User Data memory
-    var localMemoryManager_ = LocalMemoryManager();
+    var userPrefManager_ = UserPreferencesManager();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,9 @@ class RoundTimerSetupViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func startButtonClicked(_ sender: Any) {
+        saveUserData()
     }
     
     @IBAction func numberOfRoundsChanged(_ sender: UIStepper) {
@@ -62,15 +65,15 @@ class RoundTimerSetupViewController: UIViewController {
     }
     
     func saveUserData(){
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER, value: roundTimerInformation_.numberOfRounds.description);
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION, value: roundTimerInformation_.secondPerRound.description);
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION, value: roundTimerInformation_.secondPerBreak.description);
+        userPrefManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER, value: roundTimerInformation_.numberOfRounds.description);
+        userPrefManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION, value: roundTimerInformation_.secondPerRound.description);
+        userPrefManager_.setValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION, value: roundTimerInformation_.secondPerBreak.description);
     }
     
     func loadUserData(){
-        let savedRoundNumber = localMemoryManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER);
-        let savedRoundDuration = localMemoryManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION);
-        let savedRoundBreakDuration = localMemoryManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION);
+        let savedRoundNumber = userPrefManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_NUMBER);
+        let savedRoundDuration = userPrefManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_DURATION);
+        let savedRoundBreakDuration = userPrefManager_.getValueForKey(BoxingTimerUserDataKeys.ROUND_BREAK_DURATION);
         
         if(savedRoundNumber != "") {
             roundsStepper.value = Double(savedRoundNumber)!;

@@ -40,6 +40,7 @@ class RoundTimer : BasicTimer, Observable {
         currentTime_ = info_.secondPerRound;
         // start the timer
         timer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        notify();
     }
     
     func end() {
@@ -60,32 +61,7 @@ class RoundTimer : BasicTimer, Observable {
         addTimeToTimer((Int(timeDifference)));
         
     }
-    /*
-    func setNumberOfRounds(_ value : Int){
-        numberOfRounds_ = value;
-    }
-    
-    func setSecondPerRound(_ value : Int){
-        secondPerRound_ = value;
-    }
-    
-    func setSecondPerBreak(_ value : Int){
-        secondPerBreak_ = value;
-    }
-     
-    
-    func getNumberOfRounds() -> Int {
-        return info_.numberOfRounds;
-    }
-    
-    func getSecondPerRound() -> Int {
-        return secondPerRound_;
-    }
-    
-    func getSecondPerBreak() -> Int {
-        return secondPerBreak_;
-    }
-     */
+
     func getCurrentRound() -> Int {
         return info_.currentRound;
     }

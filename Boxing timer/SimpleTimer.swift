@@ -32,17 +32,6 @@ class SimpleTimer : BasicTimer, Observable {
         addObserver(observer: view);
     }
     
-    
-    /*
-    func setTotalDuration(_ value : Int){
-        totalDuration_ = value;
-    }
-    
-    func getTotalDuration() -> Int {
-        return totalDuration_;
-    }
-     */
-    
     func start() {
         playAlarmSound();
         timer_.invalidate() // just in case this button is tapped multiple times
@@ -50,6 +39,7 @@ class SimpleTimer : BasicTimer, Observable {
         currentTime_ = info_.totalDuration;
         // start the timer
         timer_ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(simpleTimerAction), userInfo: nil, repeats: true)
+        notify();
     }
     
     func end() {

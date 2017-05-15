@@ -8,8 +8,11 @@
 
 import Foundation
 struct BoxingTimerUserDataKeys {
+    // keys for round timer preference
     static let ROUND_NUMBER = "roundNumber";
     static let ROUND_DURATION = "roundDuration";
     static let ROUND_BREAK_DURATION = "roundBreakDuration";
+    
+    // keys for simple timer preference
     static let SIMPLE_TIMER_DURATION = "simpleTimerDuration";
 }

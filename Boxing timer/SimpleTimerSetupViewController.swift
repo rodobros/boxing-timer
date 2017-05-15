@@ -21,7 +21,7 @@ class SimpleTimerSetupViewController: UIViewController {
     fileprivate var simpleTimerInformation_ = SimpleTimerInformation();
     
     // User Data memory
-    var localMemoryManager_ = LocalMemoryManager();
+    var userPrefManager_ = UserPreferencesManager();
     
         
     override func viewDidLoad() {
@@ -49,11 +49,11 @@ class SimpleTimerSetupViewController: UIViewController {
     }
     
     func saveUserData(){
-        localMemoryManager_.setValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION, value: simpleTimerInformation_.totalDuration.description);
+        userPrefManager_.setValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION, value: simpleTimerInformation_.totalDuration.description);
     }
     
     func loadUserData(){
-        let previousTotalDuration = localMemoryManager_.getValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION);
+        let previousTotalDuration = userPrefManager_.getValueForKey(BoxingTimerUserDataKeys.SIMPLE_TIMER_DURATION);
         
         if(previousTotalDuration != "") {
             roundDurationStepper.value = Double(previousTotalDuration)!;
