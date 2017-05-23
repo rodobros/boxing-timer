@@ -25,6 +25,7 @@
 		FA96EE121D8077DC00D86BBB /* SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */; };
 		FA96EE141D8147C100D86BBB /* UserPreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE131D8147C100D86BBB /* UserPreferencesManager.swift */; };
 		FA96EE161D814CA200D86BBB /* BoxingTimerUserDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */; };
+		FABC423A1ED3DD1200E2671C /* Beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FABC42391ED3DD1200E2671C /* Beep.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		FA96EE111D8077DC00D86BBB /* SimpleTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTimer.swift; sourceTree = "<group>"; };
 		FA96EE131D8147C100D86BBB /* UserPreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferencesManager.swift; sourceTree = "<group>"; };
 		FA96EE151D814CA200D86BBB /* BoxingTimerUserDataKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxingTimerUserDataKeys.swift; sourceTree = "<group>"; };
+		FABC42391ED3DD1200E2671C /* Beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Beep.mp3; path = Assets.xcassets/Beep.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		FA00C18A1EC4ECA300779A87 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				FABC42391ED3DD1200E2671C /* Beep.mp3 */,
 				FA96EE0F1D7FBA3000D86BBB /* DingDing.mp3 */,
 			);
 			name = Sounds;
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA96EE061D7E934100D86BBB /* LaunchScreen.storyboard in Resources */,
+				FABC423A1ED3DD1200E2671C /* Beep.mp3 in Resources */,
 				FA96EE031D7E934100D86BBB /* Assets.xcassets in Resources */,
 				FA96EE101D7FBA3000D86BBB /* DingDing.mp3 in Resources */,
 				FA96EE011D7E934100D86BBB /* Main.storyboard in Resources */,

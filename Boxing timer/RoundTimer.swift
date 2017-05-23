@@ -80,6 +80,9 @@ class RoundTimer : BasicTimer, Observable {
     }
     
     private func addTimeToTimer(_ seconds : Int){
+        if(currentTime_ <= 0) {
+            return;
+        }
         tryDecrementTimer(seconds);
     }
     
@@ -108,7 +111,6 @@ class RoundTimer : BasicTimer, Observable {
                     playAlarmSound();
                     isFinish_ = true;
                     end();
-                    return;
                 }
                 else
                 {

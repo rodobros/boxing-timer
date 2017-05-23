@@ -25,7 +25,7 @@ class SimpleTimer : BasicTimer, Observable {
     private var timeOnSleep_ = Date();
     
     init(view : Observer, info : SimpleTimerInformation) {
-        if let soundURL = Bundle.main.url(forResource: "DingDing", withExtension: "mp3") {
+        if let soundURL = Bundle.main.url(forResource: "Beep", withExtension: "mp3") {
             AudioServicesCreateSystemSoundID(soundURL as CFURL, &alarmSound_);
         }
         info_ = info;
@@ -33,7 +33,6 @@ class SimpleTimer : BasicTimer, Observable {
     }
     
     func start() {
-        playAlarmSound();
         timer_.invalidate() // just in case this button is tapped multiple times
         isFinish_ = false;
         currentTime_ = info_.totalDuration;

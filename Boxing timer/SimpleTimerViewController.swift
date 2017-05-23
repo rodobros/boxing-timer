@@ -81,5 +81,13 @@ class SimpleTimerViewController: UIViewController, Observer {
     func willEnterForeground(_ notification: Notification) {
         simpleTimer_!.notifyAppWillEnterForeground();
     }
+    
+    // override to go back to a specific tab
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "simpleToSetupSegue") {
+            let tabBar = segue.destination as! UITabBarController;
+            tabBar.selectedIndex = 1; // simple timer tab
+        }
+    }
 }
 
