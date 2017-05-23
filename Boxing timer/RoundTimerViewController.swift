@@ -21,6 +21,7 @@ class RoundTimerViewController: UIViewController, Observer {
     @IBOutlet weak var secondsTimerLabel: UILabel!
     
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var timerXCenterConstraint: NSLayoutConstraint!
     
     //timer variables
     private var roundTimer_ : RoundTimer?
@@ -93,6 +94,12 @@ class RoundTimerViewController: UIViewController, Observer {
     func update() {
         minutesTimerLabel.text = roundTimer_!.getCurrentMinutes();
         secondsTimerLabel.text = roundTimer_!.getCurrentSeconds();
+        
+        // move the timer slightly to the left to center it if necessary
+        if(Int(roundTimer_!.getCurrentMinutes())! < 10){
+            timerXCenterConstraint.constant = -15;
+        }
+        
         if(roundTimer_!.isBreak()){
             if(roundTimer_!.isGetReady()){
                 roundInformationLabel.text = "Get ready!";

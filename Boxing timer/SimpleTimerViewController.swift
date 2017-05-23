@@ -11,14 +11,15 @@ import UIKit
 class SimpleTimerViewController: UIViewController, Observer {
     
     internal var observerName = "SimpleTimerObserver";
+
     
-    @IBOutlet weak var timerView: UIView!
     @IBOutlet weak var timerTitle: UILabel!
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var minutesLabel: UILabel!
     @IBOutlet weak var timerSeparator: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     
+    @IBOutlet weak var timerXCenterConstraint: NSLayoutConstraint!
     private var simpleTimer_ : SimpleTimer?; // timer that will received from setup viewController
 
     
@@ -64,6 +65,10 @@ class SimpleTimerViewController: UIViewController, Observer {
     // Observer pattern required function
     func update() {
         minutesLabel.text = simpleTimer_!.getCurrentMinutes();
+        if(Int(simpleTimer_!.getCurrentMinutes())! < 10){
+            timerXCenterConstraint.constant = -15;
+        }
+        
         secondsLabel.text = simpleTimer_!.getCurrentSeconds();
         if(simpleTimer_!.isFinished()){
             allowPhoneToSleep(true);
